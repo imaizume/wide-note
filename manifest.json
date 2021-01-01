@@ -1,5 +1,5 @@
 {
-  "name": "ワイドビュー note",
+  "name": "ワイドビューnote",
   "version": "1.0",
   "description": "noteの閲覧時に本文の幅を指定の値に変更できます",
   "permissions": ["activeTab", "declarativeContent", "storage"],
