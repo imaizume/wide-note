@@ -2,7 +2,7 @@
 
 let changeColor = document.getElementById('changeColor');
 
-chrome.storage.sync.get('width', function(data) {
+chrome.storage.sync.get({ 'width' : 1080 }, function(data) {
   changeWidth.setAttribute('value', data.width);
   changeWidth.textContent = "width : default";
 });
