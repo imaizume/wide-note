@@ -1,15 +1,23 @@
-'use strict';
 
-chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({width: 1080}, function() {
-    console.log('Set width to 1080px.');
-  });
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    chrome.declarativeContent.onPageChanged.addRules([{
-      conditions: [new chrome.declarativeContent.PageStateMatcher({
-        pageUrl: {hostEquals: 'note.com'},
-      })],
-      actions: [new chrome.declarativeContent.ShowPageAction()]
-    }]);
-  });
-});
+chrome.browserAction.onClicked.addListener(
+  function(tab){
+    chrome.storage.sync.get('isEnabled', function(data) {
+      let newState = !data.isEnabled
+      chrome.storage.sync.set(
+        { isEnabled: newState },
+        function() {
+          let iconPath = newState ? "images/icon128.png" : "images/inactive.png";
+          chrome.browserAction.setIcon({ path: iconPath });
+          chrome.tabs.sendMessage(tab.id, {});
+        }
+      );
+    });
+  }
+);
+
+chrome.tabs.onUpdated.addListener(
+  function(tabId, changeInfo, tab) {
+    chrome.tabs.sendMessage(tabId, {});
+  }
+);
+

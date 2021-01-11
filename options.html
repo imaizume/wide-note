@@ -8,17 +8,20 @@
     <script src="uikit-icons.min.js"></script>
   </head>
   <body>
-    <div class="uk-container">
-      <div class="uk-margin">
+    <div class="uk-margin-top">
+      <div class="uk-container">
         <div id="alert"></div>
         <div class="uk-inline">
+          <span>コンテンツ幅: </span>
           <input
+            style="width: 8rem;"
             class="uk-input"
             name="width"
             type="number"
             id="width"
-            placeholder="e.g. 1080">
-        </div> px
+            placeholder="例: 1200">
+        </div>
+        <span>px</span>
         <button
           id="button"
           class="uk-button uk-button-default">Update</button>
